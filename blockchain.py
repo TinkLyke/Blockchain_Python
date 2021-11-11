@@ -11,7 +11,7 @@ import threading
 from flask_mysqldb import MySQL
 
 class Blockchain:
-	def create_genesis_block:
+	def create_genesis_block(self):
 		curr_time = datetime.datetime.now()
 		block = {}
 		block['index'] = 1
@@ -20,3 +20,16 @@ class Blockchain:
 		block['data'] = 'This is the genesis block of blockcahin'
 		block['timestamp'] = curr_time.strftime('%Y-%m-%d %H:%M:%S.%f')
 
+		encoded_block = json.dumps(block, sort_keys = True).encode()
+
+		# can change the encryption mode
+		new_hash = hashlib.sha256(encoded_block).hexdigest()
+		block['new_hash'] = new_hash
+
+
+		print(block)
+
+
+new_Blockchain = Blockchain()
+
+new_Blockchain.create_genesis_block()

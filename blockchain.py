@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import hashlib
 import json
 from flask import Flask, jsonify, request
@@ -12,7 +12,7 @@ from flask_mysqldb import MySQL
 
 class Blockchain:
 	def create_genesis_block(self):
-		curr_time = datetime.datetime.now()
+		curr_time = datetime.now()
 		block = {}
 		block['index'] = 1
 		block['pre_hash'] = '0000000000'

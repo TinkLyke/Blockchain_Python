@@ -1,6 +1,6 @@
 from fastecdsa import curve,ecdsa, keys
 from uuid import uuid4
-import datetime
+from datetime import datetime
 import json
 
 class Account:
@@ -18,7 +18,7 @@ class Account:
 
 	def create_transaction(self, data) -> dict:
 		trans_id = str(uuid4()).replace('-','')
-		timestamp = str(datetime.datetime.now())
+		timestamp = str(datetime.now())
 		trans = { 
 				'trans_id': trans_id,
 				'timestamp': timestamp,

@@ -1,5 +1,7 @@
 from fastecdsa import curve,ecdsa, keys
 from uuid import uuid4
+import datetime
+
 
 class Account:
 
@@ -12,13 +14,23 @@ class Account:
 		public_key = keys.get_public_key(private_key, curve.secp256k1)
 		return public_key
 
+	#next create transcation then sign the transaction with keys
+
+	def create_transaction(self, data) -> str:
+		trans_id = str(uuid4()).replace('-','')
+		timestamp = str(datetime.datetime.now())
+		trans = { 
+				 'trans_id': trans_id,
+				 'timestamp': timestamp,
+				 'data': data
+				}
+
+		return trans
+
+		
 
 
 account = Account()
-
-pvk = account.generate_priv_key()
-puk = account.generate_pub_key(pvk)
+print (account.create_transaction("hello"))
 
 
-print ('private key: ', pvk)
-print ('public key: ', puk)

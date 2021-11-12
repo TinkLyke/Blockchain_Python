@@ -31,10 +31,14 @@ class Account:
 		# sign a message using the elliptic curve digital signature algorithm
 		hash_func = ecdsa.sha256
 		sign_curve = curve.secp256k1
+		
 		# note: we need to convert dict to bytes before signing
 		trans_to_bytes = json.dumps(trans)
 
-		signature = ecdsa.sign(trans_to_bytes, private_key, sign_curve, hash_func)
+		# we can also encode it 
+		encoded_trans = trans_to_bytes.encode()
+
+		signature = ecdsa.sign(encoded_trans, private_key, sign_curve, hash_func)
 
 		# return {x,y}
 		return signature
@@ -46,7 +50,7 @@ class Account:
 
 
 account = Account()
-transcation = account.create_transaction("hello")
+transcation = account.create_transaction("I am selling stuff")
 private = account.generate_priv_key()
 print (account.get_signature(transcation,private))
 

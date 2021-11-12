@@ -1,0 +1,42 @@
+Collecting flask-mysqldb
+  Using cached Flask-MySQLdb-0.2.0.tar.gz (2.1 kB)
+Requirement already satisfied: Flask>=0.10 in /Users/will/blockchain-env/lib/python3.9/site-packages (from flask-mysqldb) (2.0.2)
+Collecting mysqlclient
+  Using cached mysqlclient-2.0.3.tar.gz (88 kB)
+  Using cached mysqlclient-2.0.2.tar.gz (88 kB)
+  Using cached mysqlclient-2.0.1.tar.gz (87 kB)
+  Using cached mysqlclient-2.0.0.tar.gz (87 kB)
+  Using cached mysqlclient-1.4.6.tar.gz (85 kB)
+  Using cached mysqlclient-1.4.5.tar.gz (86 kB)
+  Using cached mysqlclient-1.4.4.tar.gz (86 kB)
+  Using cached mysqlclient-1.4.3.tar.gz (86 kB)
+  Using cached mysqlclient-1.4.2.post1.tar.gz (85 kB)
+  Using cached mysqlclient-1.4.2.tar.gz (85 kB)
+  Using cached mysqlclient-1.4.1.tar.gz (85 kB)
+  Using cached mysqlclient-1.4.0.tar.gz (85 kB)
+  Using cached mysqlclient-1.3.14.tar.gz (91 kB)
+  Using cached mysqlclient-1.3.13.tar.gz (90 kB)
+  Using cached mysqlclient-1.3.12.tar.gz (89 kB)
+  Using cached mysqlclient-1.3.11.tar.gz (89 kB)
+  Using cached mysqlclient-1.3.10.tar.gz (82 kB)
+  Using cached mysqlclient-1.3.9.tar.gz (81 kB)
+  Using cached mysqlclient-1.3.8.tar.gz (81 kB)
+  Using cached mysqlclient-1.3.7.tar.gz (79 kB)
+  Using cached mysqlclient-1.3.6.tar.gz (78 kB)
+  Using cached mysqlclient-1.3.5.tar.gz (77 kB)
+  Using cached mysqlclient-1.3.4.tar.gz (77 kB)
+  Using cached mysqlclient-1.3.3.tar.gz (77 kB)
+  Using cached mysqlclient-1.3.2.tar.gz (77 kB)
+  Using cached mysqlclient-1.3.1.tar.gz (76 kB)
+  Using cached mysqlclient-1.3.0.tar.gz (76 kB)
+Collecting flask-mysqldb
+  Using cached Flask-MySQLdb-0.1.1.tar.gz (2.0 kB)
+
+The conflict is caused by:
+    flask-mysqldb 0.2.0 depends on mysqlclient
+    flask-mysqldb 0.1.1 depends on mysqlclient
+
+To fix this you could try to:
+1. loosen the range of package versions you've specified
+2. remove package versions to allow pip attempt to solve the dependency conflict
+

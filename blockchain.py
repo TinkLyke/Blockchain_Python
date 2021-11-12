@@ -22,14 +22,12 @@ class Blockchain:
 
 		encoded_block = json.dumps(block, sort_keys = True).encode()
 
-		# can change the encryption mode
+		# can change the encryption mode - SHA256
 		new_hash = hashlib.sha256(encoded_block).hexdigest()
 		block['new_hash'] = new_hash
 
 
-		print(block)
 
+#new_Blockchain = Blockchain()
 
-new_Blockchain = Blockchain()
-
-new_Blockchain.create_genesis_block()
+#new_Blockchain.create_genesis_block()

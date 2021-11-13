@@ -60,7 +60,7 @@ class Block():
 
 class Blockchain():
 	# Set difficulty - hash with '0000'
-	difficulty = 4
+	difficulty = 2
 
 	# Initialize blockchain with a empty chain
 	def __init__(self, chain=[]):
@@ -87,7 +87,7 @@ class Blockchain():
 
 		# If the hash of the block starts with '0000', then we add it into block. else, we increase nonce and re-do the hash.
 		while True:
-			if block.hash()[:4] == "0" * 4:
+			if block.hash()[:self.difficulty] == "0" * self.difficulty:
 				self.add(block)
 				break
 			else:

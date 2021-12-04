@@ -3,15 +3,7 @@
 
 from datetime import datetime
 from hashlib import sha256
-#import json
-#from flask import Flask, jsonify, request
-#import requests
-#from uuid import uuid4
-#from urllib.parse import urlparse
-#from fastecdsa import curve,ecdsa, keys
-#import zmq
-#import threading
-#from flask_mysqldb import MySQL
+
 
 # Form the hash text
 def form_hash_text(self, *args):
@@ -68,20 +60,16 @@ class Blockchain():
 
 	# Adding a block to the chain
 	def add(self, block):
-		self.chain.append({
-				'hash': block.hash(),
-				'previous': block.prev_hash,
-				'number': block.number,
-				'data': block.data,
-				'nonce': block.nonce
-				})
+		self.chain.append(block)
+
+	# Removing a block from the chain
+	def remove(self, block):
+		self.chain.remove(block)
 
 	def mine(self, block):
-		# Try to get the previous hash from the last block of the chain
+		# Try to hash from the last block of the chain
 		try:
-			block.prev_hash = self.chain[-1].get('hash')
-
-		# If we don't have any
+			block.prev_hash = self.chain[-1].hash()
 		except IndexError:
 			pass
 
@@ -93,6 +81,15 @@ class Blockchain():
 			else:
 				block.nonce += 1
 
+	# validate previous hash and current block with correct hash (leading 0s)
+	def validate(self) -> bool:
+		for i in range(1, len(self.chain)):
+			prevhash = self.chain[i].prev_hash
+			currhash = self.chain[i-1].hash()
+			if prevhash != currhash or currhash[:self.difficulty] != "0"*self.difficulty:
+				return False
+		return True
+
 
 
 
@@ -100,7 +97,7 @@ def main():
 
 	# Generating a blockchain and add data into chain
 	new_blockchain = Blockchain()
-	database = ['hello','I want to','sleep','tired']
+	database = ['hello','I want to eat','maybe','some cake']
 
 	block_number = 0
 
@@ -114,6 +111,18 @@ def main():
 
 	for single_block in new_blockchain.chain:
 		print(single_block)
+	
+	# By modifying the data of one of the block, its hash will be changed
+	# which will corrupt the blockchain
+	new_blockchain.chain[2].data = "wrong info"
+	new_blockchain.mine(new_blockchain.chain[2])
+	print("The corrupted hash is %s \nThe correct one is %s \nThe validation result is %s" % 
+	(
+		new_blockchain.chain[2].hash(), 
+		new_blockchain.chain[3].prev_hash,
+		new_blockchain.validate()
+	))
+	
 
 if __name__ == '__main__':
 	main()
